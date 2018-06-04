@@ -21,11 +21,7 @@
         @endif
 
     	<form  method="POST" id="payment-form" action="{!! URL::to('main/paypal') !!}">
-    	  
     	  {{ csrf_field() }}
-    	  
-    	  
-    	  
     	  <input type="hidden"  id="amount" name="amount" value="10" >
     	  <button class="w3-btn w3-blue">Pay with PayPal</button>
     	</form>

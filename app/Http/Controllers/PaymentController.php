@@ -59,8 +59,8 @@ class PaymentController extends Controller
 
             //dd($transaction);
         $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::to('status')) /** Specify return URL **/
-            ->setCancelUrl(URL::to('status'));
+        $redirect_urls->setReturnUrl(URL::to('main/status')) /** Specify return URL **/
+            ->setCancelUrl(URL::to('main/status'));
 
 
         $payment = new Payment();
@@ -95,7 +95,7 @@ class PaymentController extends Controller
             return Redirect::away($redirect_url);
         }
         \Session::put('error', 'Unknown error occurred');
-        return Redirect::to('/');
+        return Redirect::to('main/cart');
     }
     public function getPaymentStatus()
     {
@@ -105,7 +105,7 @@ class PaymentController extends Controller
         Session::forget('paypal_payment_id');
         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
             \Session::put('error', 'Payment failed');
-            return Redirect::to('/');
+            return Redirect::to('main/cart');
         }
         $payment = Payment::get($payment_id, $this->_api_context);
         $execution = new PaymentExecution();
@@ -114,9 +114,10 @@ class PaymentController extends Controller
         $result = $payment->execute($execution, $this->_api_context);
         if ($result->getState() == 'approved') {
             \Session::put('success', 'Payment success');
-            return Redirect::to('/');
+            Session()->forget('cart');
+            return Redirect::to('main/cart');
         }
         \Session::put('error', 'Payment failed');
-        return Redirect::to('/');
+        return Redirect::to('main/cart');
     }
 }
