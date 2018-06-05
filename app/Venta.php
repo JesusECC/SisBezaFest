@@ -4,19 +4,22 @@ namespace SisBezaFest;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pago extends Model
+class Venta extends Model
 {
-    protected $table='pago';
+     //referencia a la tabla articulo//
+     protected $table='venta';
      //su llave primaria //
      protected $primaryKey='id';
      //para agregar dos columnas de creación y de actualización//
      public $timestamps=false;
      //campos que reciben un valor para despues ser almacenados//
      protected $fillable=[
-         'cod_pago',
-         'tipo_pago_id',
-         'cliente_id'
-
+         'codigo',
+         'fech_venta',
+         'estado',
+         'comprobante_id',
+         'pago_id',
+         'Estado_id'
      ];
      //campos que no queremos que se asigne al modelo//
      protected $guarded = [

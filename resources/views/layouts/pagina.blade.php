@@ -81,7 +81,7 @@
 		   </div>
 		   </div>
 	     <div class="clear"></div>
-		<h2 class="head">Encuentra el <span class="m_1">próximo evento. </span>Querrás  <span class="m_1">asistir</span></h2>
+		<h2 class="head">Encuentra el <span class="m_1">próximo evento, </span>que deseas  <span class="m_1">asistir</span></h2>
      </div>
     </div>
     @yield('contenido')

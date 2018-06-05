@@ -3,6 +3,7 @@
 namespace SisBezaFest\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
@@ -15,9 +16,14 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
+
+use SisBezaFest\Pago;
+use SisBezaFest\Venta;
+use SisBezaFest\DetalleVenta;
 use Redirect;
 use Session;
 use URL;
+use DB;
 class PaymentController extends Controller
 {
     //
@@ -114,10 +120,78 @@ class PaymentController extends Controller
         $result = $payment->execute($execution, $this->_api_context);
         if ($result->getState() == 'approved') {
             \Session::put('success', 'Payment success');
-            Session()->forget('cart');
+            //Session()->forget('cart');
+            //Payment {#859 ▼
+            //    -_propMap: array:10 [▼
+            //      "id" => "PAY-763685428L436832ULMK4XSY"
+            //      "intent" => "sale"
+            //      "state" => "approved"
+            //      "cart" => "6JN07258JF269432E"
+            //      "payer" => Payer {#903 ▶}
+            //      "transactions" => array:1 [▶]
+            //      "redirect_urls" => RedirectUrls {#891 ▶}
+            //      "create_time" => "2018-06-04T23:32:57Z"
+            //      "update_time" => "2018-06-04T23:32:55Z"
+            //      "links" => array:1 [▶]
+            //    ]
+            //  }
+            $id=$result->getId();
+           //insert pago
+           $idPago=DB::table('pago')->insertGetId(
+            ['cod_pago'=>$id,
+            'tipo_pago_id'=>3,
+            'cliente_id'=>2]
+           );
+           $hoy = date("F j Y g:i a"); 
+
+           $idventa=DB::table('venta')->insertGetId(
+            ['codigo'=>$result->getCart(),
+            'fech_venta'=>$hoy,
+            'estado'=>'Pagado',
+            'comprobante_id'=>1,
+            'pago_id'=>$idPago,
+            'Estado_id'=>1            
+            ]
+           ); 
+           //tabla venta
+           $idventa=DB::table('venta')->insertGetId(
+            ['codigo'=>$result->getCart(),
+            'fech_venta'=>$hoy,
+            'estado'=>'Pagado',
+            'comprobante_id'=>1,
+            'pago_id'=>$idPago,
+            'Estado_id'=>1            
+            ]
+           ); 
+           $cart = \Session::get('cart');
+           $total=0;
+           foreach($cart as $producto){
+			$total += $producto->cant * $producto->precio;
+            }
+           
+           
+           //detalle venta y paquete
+
+           $detalle=new DetalleVenta;
+           $detalle->total=$total;
+           $detalle->descripcion='venta';
+           $detalle->cantidad='1';
+           $detalle->precio=$total;
+           $detalle->paquete_id='1';
+           $detalle->venta_id=$idventa;
+           $detalle->save();
+
+           //$pago->cod_pago=$id;
+           //$pago->tipo_pago_id=3;
+           //$pago->cliente_id=2;
+           //$pago->save();
+           Session()->flush();
             return Redirect::to('main/cart');
         }
         \Session::put('error', 'Payment failed');
         return Redirect::to('main/cart');
+    }
+    public function savePago($cod_pago,$tipo_pago1,$cliente){
+       
     }
 }

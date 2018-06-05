@@ -50,7 +50,7 @@
 						<td>{{ number_format($c->precio,2) }}</td>
 						<td>
 							<input type="number" min="1" max="{{$c->cantidad}}" value="{{$c->cant}}" id="paquete_{{ $c->id }}">
-							<a href="#" class="btn btn-warning btn-update-item" data-href="{{ route('cart-update',$c->id) }}" data-id="{{ $c->id }}"> <i class="fa fa-refres">)</i> </a>
+							<a href="#" class="btn btn-warning btn-update-item" data-href="{{ route('cart-update',$c->id) }}" data-id="{{ $c->id }}"> <i class="fa fa-refres">Actualizar</i> </a>
 						
 						</td>
 						<td>{{ number_format($c->precio*$c->cant,2) }}</td>

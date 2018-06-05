@@ -54,9 +54,9 @@ Route::resource('administrador/empresa','EmpresaController');
 
 Auth::routes();
 //Route::resource('','HomeController');
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/{str_slug($url)?}', 'HomeController@index');
-//Route::get('/home', 'AdminController@index')->name('welcome');
+//Route::get('/home', 'AdminController@index')->name('welcome'
 
 //carrito
 Route::get('main/cart',['as' => 'cart-show','uses'=>'CartController@show']);
