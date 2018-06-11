@@ -24,16 +24,26 @@ class EmpresaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'ruc'=>'required|max:11|numeric',
+            'ruc'=>'required',
+            'ruc'=>'numeric',
+            'ruc'=>'max:11',
+            'ruc'=>'min:11',
             'razon_social'=>'required|max:255|alpha',
             'nom_empresa'=>'required|max:255|alpha',
             'dir'=>'required|max:255',
-            'cel'=>'required|max:9|numeric',
-            'telefono'=>'required|max:7|numeric',
+            'cel'=>'required',
+            'cel'=>'numeric',
+            'cel'=>'max:9',
+            'cel'=>'min:9',
+            'tel'=>'required',
+            'tel'=>'min:7',
+            'tel'=>'max:7',
+            'tel'=>'numeric',
             'gmail'=>'required|email|max:255|unique:empresa,correo',
-            'n_cuenta'=>'required|max:19|numeric',
-            'Estado_id'=>'required',
-            'persona_id'=>'required',
+            'n_cuenta'=>'required',
+            'n_cuenta'=>'max:19',
+            'n_cuenta'=>'min:19',
+            'n_cuenta'=>'numeric',
         ];
     }
     public function messages()
@@ -46,8 +56,6 @@ class EmpresaFormRequest extends FormRequest
             'tel.required' =>'Se requiere de este campo',
             'dir.required' =>'Se requiere de este campo',
             'gmail.required' =>'Se requiere de este campo',
-            'edad.required' =>'Se requiere de este campo',
-            'Estado_id.required' =>'Se requiere de este campo',
             'n_cuenta.required' =>'Se requiere de este campo',
 
             'ruc.numeric' =>'Solo acepta números',
@@ -59,17 +67,21 @@ class EmpresaFormRequest extends FormRequest
             'razon_social.alpha' =>'Solo acepta letras',
             
             'ruc.max' =>'Solo acepta 11 caracteres',
-            'razon_social.max' =>'Solo acepta 255 caracteres',
-            'nom_empresa.max' =>'Solo acepta 255 caracteres',
-            'dir.max' =>'Solo acepta 255 caracteres',
-            'gmail.max' =>'Solo acepta 255 caracteres',
-            'cel.max' =>'Número de celular incorrecto ejemplo (947562430)',
-            'tel.max' =>'Número de teléfono incorrecto ejemplo(5504636)',
 
-            'ruc.numeric' =>'Solo acepta números',
-            'n_cuenta.numeric'=>'Solo acepta números',
+            'razon_social.max'=>'Solo acepta 255 caracteres',
+            'nom_empresa.max'=>'Solo acepta 255 caracteres',
+            'dir.max'=>'Solo acepta 255 caracteres',
+            'gmail.max'=>'Solo acepta 255 caracteres',
+            'cel.max'=>'Número de celular incorrecto ejemplo (947562430)',
+            'tel.max'=>'Solo acepta 7 números',
+            'n_cuenta.max' =>'Solo acepta 19 caracteres',
+
+            'ruc.numeric' =>'Solo acepta números RUC',
+            'n_cuenta.numeric'=>'Solo acepta números NUMERO DE CUENTA',
             'gmail.email'=>'El campo requiere un correo valido',
             'gmail.unique'=>'El correo ya esta registrado',
+            'ruc.min'=>'Son 11 números el RUC',
+            'n_cuenta.min'=>'Son 19 números NUMERO DE CUENTA'
         ];
     }
 }
