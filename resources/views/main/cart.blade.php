@@ -115,9 +115,12 @@
 									{{ csrf_field() }}
 									<input type="hidden"  id="amount" name="amount" value="{{number_format($total,2)}}" >
 
-									<button type="button" class="btn btn-outline-info">
+									<button type="button" class="btn btn-light">
 										<span>
 											<img src="{{asset('images/paypal.svg')}}" alt="" width="50px" height="50px">
+										</span>
+										<span>
+											Pagar
 										</span>
 									</button>
 								</form>		
