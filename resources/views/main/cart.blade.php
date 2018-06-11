@@ -29,7 +29,7 @@
 			<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<h1><span><img src="{{asset('images/shopping-cart.svg')}}" alt="" width="50px" height="50px"></span> Carrito de compras</h1>
-						@if(isset($cart) && isset($total))
+						@if(isset($cart) && isset($total) && count($cart)!=0)
 						<div class="table-responsive-center">
 							<table class="table table-striped table-bordered table-condensed table-hover">
 								<thead>
