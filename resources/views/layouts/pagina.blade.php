@@ -61,7 +61,7 @@
 					<a href="{{route('cart-show')}}"> 
 					<i class="fa fa-shopping-cart"></i>
 					<span>@if(isset($cart))
-					{{count($cart)}}
+					{{count($cart)>0}}
 					@endif</span>
 					</a>
 				</li>
