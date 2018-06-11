@@ -25,7 +25,16 @@ class TipoComprobanteRequest extends FormRequest
     {
         return [
             //
-            'comprobante'
+            'comprobante'=>'required|alpha|max:255',
         ];
     }
+    public function messages()
+    {
+        return [
+            'comprobante.required' =>'Se requiere de este campo',
+            'comprobante.alpha' =>'Solo acepta letras',
+            'comprobante.max' =>'Solo acepta 255 caracteres',
+        ];
+    }
+
 }

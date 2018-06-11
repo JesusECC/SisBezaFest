@@ -26,8 +26,20 @@ class UsuarioFromRequest extends FormRequest
         return [
             //
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' =>'Agrega el nombre del usuario',
+            'name.max'=>'Máximo acepta 255 caracteres',
+            'email.required'=>'Agrega un correo valido',
+            'email.email'=>'El campo requiere un correo valido',
+            'email.unique'=>'El correo ya esta registrado',
+            'password.min'=>'Coloca una contraseña igual o mayor de 6 caracteres',
+            'password.confirmed'=>'Confirmar contraseña no es valida'
         ];
     }
 }

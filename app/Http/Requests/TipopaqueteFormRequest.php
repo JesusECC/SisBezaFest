@@ -24,7 +24,17 @@ class TipopaqueteFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nom_paquete'=>'required|alpha´|max:255',
+
+        ];
+    }
+    public function messages()
+    {
+        return [
+
+            'nom_paquete.required' =>'Se requiere de este campo',
+            'nom_paquete.alpha' =>'Solo acepta letras',
+            'nom_paquete.max' =>'Solo acepta 255 caracteres',
         ];
     }
 }

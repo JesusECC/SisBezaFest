@@ -24,7 +24,15 @@ class TipopersonaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'tipo_persona'=>'required|alpha|max:255'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'tipo_persona.required' =>'Se requiere de este campo',
+            'tipo_persona.alpha' =>'Solo acepta letras',
+            'tipo_persona.max' =>'Solo acepta 255 caracteres',
         ];
     }
 }

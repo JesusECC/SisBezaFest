@@ -24,7 +24,15 @@ class EstadoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre'=>'required|alpha|max:255'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'nombre.required' =>'Se requiere de este campo',
+            'nombre.alpha' =>'Solo acepta letras',
+            'nombre.max' =>'Solo acepta 255 caracteres',
         ];
     }
 }

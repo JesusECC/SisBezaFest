@@ -24,8 +24,19 @@ class TipodocumentoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'tipo_doc'=>'required|max:30',
-            'descripcion'=>'max:300'
+            'tipo_doc'=>'required|max:20|alpha',
+            'descripcion'=>'required|max:300|alpha'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'tipo_doc.required' =>'Se requiere este campo',
+            'descripcion.required' =>'Se requiere este campo',
+            'tipo_doc.max'=>'Máximo acepta 20 caracteres',
+            'descripcion.max' =>'Máximo acepta 300 caracteres',
+            'tipo_doc.alpha'=>'Solo acepta letras',
+            'descripcion.alpha'=>'Solo acepta letras'
         ];
     }
 }

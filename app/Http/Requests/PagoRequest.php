@@ -24,7 +24,17 @@ class PagoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+        'cod_pago'=>'required',
+        'tipo_pago_id'=>'required',
+        'cliente_id'=>'required'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'cod_pago.required' =>'Se requiere de este campo',
+            'tipo_pago_id.required' =>'Se requiere de este campo',
+            'cliente_id.required' =>'Se requiere de este campo',
         ];
     }
 }

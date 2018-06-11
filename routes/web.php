@@ -24,6 +24,7 @@ Route::resource('partner/evento','EventoController');
 Route::resource('partner/paquete','PaqueteController');
 Route::resource('partner/tipopaquete','TipopaqueteController');
 Route::resource('partner/preventa','PreventaController');
+Route::resource('partner/tipodocumento','TipodocumentoController');
 //rutas del administrador
 Route::resource('administrador/tipodocumento','TipodocumentoController');
 Route::resource('administrador/comprobante','TipoComprobanteController');
