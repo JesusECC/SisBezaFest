@@ -24,15 +24,15 @@ class TipoPagoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=>'required|alpha|max:255'
+            'tipopago'=>'required|alpha|max:255'
         ];
     }
     public function messages()
     {
         return [
-            'nombre.required' =>'Se requiere de este campo',
-            'nombre.alpha' =>'Solo acepta letras',
-            'nombre.max' =>'Solo acepta 255 caracteres',
+            'tipopago.required' =>'Se requiere de este campo',
+            'tipopago.alpha' =>'Solo acepta letras',
+            'tipopago.max' =>'Solo acepta 255 caracteres',
         ];
     }
 }
