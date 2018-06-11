@@ -1,10 +1,10 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true"  role="dialog" tabindex="-1" id="modal-vista-{{$p->id}}">
+<div class="modal fade modal-slide-in-right" aria-hidden="true"  role="dialog" tabindex="-1" id="modal-vista-{{$c->id}}">
 	<div class="modal-dialog" style="background-color: white">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span  aria-hidden="true">x</span>
 			</button>
-			<h4 class="modal-title"> Paquetea {{$p->nombre}}</h4>
+			<h4 class="modal-title"> Paquete {{$c->nombre}}</h4>
 		</div>
 		<div class="modal-body">
 			<center>
@@ -13,16 +13,16 @@
 			
 			
 						<h3>
-							Descripción del evento {{$p->nombre}}
+							Descripción del evento {{$c->nombre}}
 						</h3>
 						<p>
-							{{$p->descripcion}}
+							{{$c->descripcion}}
 						</p>
 						<p>
-							{{$p->precio}}
+							{{$c->precio}}
 						</p>
 						<p>
-							{{$p->nr_personas}}
+							{{$c->nr_personas}}
 						</p>
 		</div>
 		<div class="modal-footer">

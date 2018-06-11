@@ -10,7 +10,7 @@
 
 <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
 
 <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
 

@@ -25,62 +25,94 @@
         </div>
         <?php Session::forget('error');?>
         @endif
-<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<h1><i class="fa fa-shopping-cart"></i>Carrito de compras</h1>
-			@if(isset($cart) && isset($total))
-			<div class="table-responsive-center">
-				<table class="table table-striped table-bordered table-condensed table-hover">
-					<thead>
-						<th>Imagen</th>
-						<th>Paquete</th>
-						<th>Precio</th>
-						<th>Cantidad</th>
-						<th>Subtotal</th>
-						<th>Quitar</th>
+        <div class="container">
+			<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<h1><span><img src="{{asset('images/shopping-cart.svg')}}" alt="" width="50px" height="50px"></span> Carrito de compras</h1>
+						@if(isset($cart) && isset($total))
+						<div class="table-responsive-center">
+							<table class="table table-striped table-bordered table-condensed table-hover">
+								<thead>
+									<th>Imagen</th>
+									<th>Paquete</th>
+									<th>Precio</th>
+									<th>Cantidad</th>
+									<th>Subtotal</th>
+									<th>Opciones</th>
 
-					</thead>
-					<tbody>
-					
-					
-					@foreach ($cart as $c)
-					<tr>
-						<td><img src="{{asset('images/paquete/'.$c->imagen)}}" alt="{{$c->nombres}}" class="img-responsive" height="50px" width="50px"></td>
-						<td>{{ $c->nombre }}</td>
-						<td>{{ number_format($c->precio,2) }}</td>
-						<td>
-							<input type="number" min="1" max="{{$c->cantidad}}" value="{{$c->cant}}" id="paquete_{{ $c->id }}" class="solo-numero">
-							<a href="#" class="btn btn-warning btn-update-item" data-href="{{ route('cart-update',$c->id) }}" data-id="{{ $c->id }}"> <i class="fa fa-refres">Actualizar</i> </a>
-						
-						</td>
-						<td>{{ number_format($c->precio*$c->cant,2) }}</td>
-						<td>
-							<a href="{{route('cart-delete',$c->id)}}" class="btn btn-default">
-								<i class="fas fa-trash">eliminar</i>
-							</a>
-						</td>
+								</thead>
+								
+								
+								@foreach ($cart as $c)
+								<tr style="text-align: center !important;">
+									<td>
+										<center>
+											<img src="{{asset('images/paquete/'.$c->imagen)}}" alt="{{$c->nombres}}" class="img-responsive" height="50px" width="50px" >
+										</center>
+									</td>
+									<td>{{ $c->nombre }}</td>
+									<td>{{ number_format($c->precio,2) }}</td>
+									<td>
+										<input type="number" min="1" max="{{$c->cantidad}}" value="{{$c->cant}}" id="paquete_{{ $c->id }}" class="solo-numero" style="border-radius: 5px;text-align: center;">
+										<a href="#" class="btn btn-default btn-update-item" data-href="{{ route('cart-update',$c->id) }}" data-id="{{ $c->id }}"> <img src="{{asset('images/refresh.svg')}}" alt="" width="20px" height="20px"> </a>
+									
+									</td>
+									<td>{{ number_format($c->precio*$c->cant,2) }}</td>
+									<td>
+										<a data-target="#modal-vista-{{$c->id}}" href=""  data-toggle="modal" class="btn btn-default">
+											<span ><img src="{{asset('images/view.svg')}}" alt="" width="30px" height="30px"> </span>
+										</a>
+										
+										<a href="{{route('cart-delete',$c->id)}}" class="btn btn-default">
+											<span ><img src="{{asset('images/garbage.svg')}}" alt="" width="30px" height="30px"> </span>
+										</a>
+									</td>
 
-					</tr>
-					@endforeach
-					</tbody>
-				</table>
-				<h3> <span class="label label-success">
-						Total: ${{number_format($total,2)}}
-					</span></h3>
-			</div>
-			<a href="{{ route('cart-trash') }}"><button class="btn btn-primary">Vaciar carrito</button></a>
-				<a href=""><button class="btn btn-primary">Seguir Comprando</button></a>
-				
-					<form  method="POST" id="payment-form" action="{!! URL::to('main/paypal') !!}">
-						{{ csrf_field() }}
-						<input type="hidden"  id="amount" name="amount" value="{{number_format($total,2)}}" >
-						<button class="w3-btn w3-blue">Pagar con PayPal</button>
-					</form>		
+								</tr>
+									<div class="modal fade modal-slide-in-right" aria-hidden="true"  role="dialog" tabindex="-1" id="modal-vista-{{$c->id}}">
+										<div class="modal-dialog" style="background-color: white">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span  aria-hidden="true">x</span>
+												</button>
+												<h4 class="modal-title"> Paquete {{$c->nombre}}</h4>
+											</div>
+											<div class="modal-body">
+												<center>
+													<img src="{{asset('images/paquete/'.$c->imagen)}}" alt="{{$c->nombrePa}}" class="img-responsive" height="300px" width="500px">
+												</center>
+												<h3>
+													Descripción del evento {{$c->nombreEv}}
+												</h3>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													Cerrar
+												</button>
+											</div>
+										</div>
+									</div>			
+								@endforeach
+							</table>
+							<h3> <span class="label label-success">
+									Total: ${{number_format($total,2)}}
+								</span></h3>
+						</div>
+						<a href="{{ route('cart-trash') }}"><button class="btn btn-primary">Vaciar carrito</button></a>
+							<a href=""><button class="btn btn-primary">Seguir Comprando</button></a>
 							
-			@else
-				<h3><span class="label label-warning">No hay productos en el carrito :( </span> </h3>
-			@endif
-			
-		</div>
-	</div>
+								<form  method="POST" id="payment-form" action="{!! URL::to('main/paypal') !!}">
+									{{ csrf_field() }}
+									<input type="hidden"  id="amount" name="amount" value="{{number_format($total,2)}}" >
+									<button class="w3-btn w3-blue">Pagar con PayPal</button>
+								</form>		
+										
+						@else
+							<h3><span class="label label-warning">No hay productos en el carrito :( </span> </h3>
+						@endif
+						
+					</div>
+				</div>        	
+        </div>
+
 @endsection
