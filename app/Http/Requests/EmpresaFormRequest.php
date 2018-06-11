@@ -32,14 +32,17 @@ class EmpresaFormRequest extends FormRequest
             'nom_empresa'=>'required|max:255|alpha',
             'dir'=>'required|max:255',
             'cel'=>'required',
+            'cel'=>'regex:^\d*$',
             'cel'=>'numeric',
             'cel'=>'max:9',
             'cel'=>'min:9',
             'tel'=>'required',
-            'tel'=>'min:7',
             'tel'=>'max:7',
+            'tel'=>'min:7',
             'tel'=>'numeric',
             'gmail'=>'required|email|max:255|unique:empresa,correo',
+            'gmail'=>'regex:/(.*)gmail\.com/i',
+            'gmail'=>'regex:/(.*)hotmail\.com/i',
             'n_cuenta'=>'required',
             'n_cuenta'=>'max:19',
             'n_cuenta'=>'min:19',
@@ -81,7 +84,10 @@ class EmpresaFormRequest extends FormRequest
             'gmail.email'=>'El campo requiere un correo valido',
             'gmail.unique'=>'El correo ya esta registrado',
             'ruc.min'=>'Son 11 números el RUC',
-            'n_cuenta.min'=>'Son 19 números NUMERO DE CUENTA'
+            'n_cuenta.min'=>'Son 19 números NUMERO DE CUENTA',
+            'tel.min'=>'Solo acepta 7 números',
+            'gmail.regex'=>'No es un correo gmail o hotmail',
+            'cel.regex'=>'No acepta carateres especiales',
         ];
     }
 }
