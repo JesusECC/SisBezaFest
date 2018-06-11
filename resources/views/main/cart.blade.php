@@ -59,7 +59,7 @@
 									</td>
 									<td>{{ number_format($c->precio*$c->cant,2) }}</td>
 									<td>
-										<a data-target="#modal-vista-{{$c->id}}" href=""  data-toggle="modal" class="btn btn-default">
+										<a data-target="#modal-vista-{{$c->id}}" href=""  data-toggle="modal" class="btn btn-secondary" role="button">
 											<span ><img src="{{asset('images/view.svg')}}" alt="" width="30px" height="30px"> </span>
 										</a>
 										
