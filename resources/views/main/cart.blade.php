@@ -54,16 +54,16 @@
 									<td>{{ number_format($c->precio,2) }}</td>
 									<td>
 										<input type="number" min="1" max="{{$c->cantidad}}" value="{{$c->cant}}" id="paquete_{{ $c->id }}" class="solo-numero" style="border-radius: 5px;text-align: center;">
-										<a href="#" class="btn btn-default btn-update-item" data-href="{{ route('cart-update',$c->id) }}" data-id="{{ $c->id }}"> <img src="{{asset('images/refresh.svg')}}" alt="" width="20px" height="20px"> </a>
+										<a href="#" class="btn  " data-href="{{ route('cart-update',$c->id) }}" data-id="{{ $c->id }}"> <img src="{{asset('images/refresh.svg')}}" alt="" width="20px" height="20px"> </a>
 									
 									</td>
 									<td>{{ number_format($c->precio*$c->cant,2) }}</td>
 									<td>
-										<a data-target="#modal-vista-{{$c->id}}" href=""  data-toggle="modal" class="btn btn-secondary" role="button">
+										<a data-target="#modal-vista-{{$c->id}}" href=""  data-toggle="modal" class="btn btn-outline-warning" role="button">
 											<span ><img src="{{asset('images/view.svg')}}" alt="" width="30px" height="30px"> </span>
 										</a>
 										
-										<a href="{{route('cart-delete',$c->id)}}" class="btn btn-default">
+										<a href="{{route('cart-delete',$c->id)}}" class="btn btn-outline-danger" role="button">
 											<span ><img src="{{asset('images/garbage.svg')}}" alt="" width="30px" height="30px"> </span>
 										</a>
 									</td>
@@ -98,13 +98,28 @@
 									Total: ${{number_format($total,2)}}
 								</span></h3>
 						</div>
-						<a href="{{ route('cart-trash') }}"><button class="btn btn-primary">Vaciar carrito</button></a>
-							<a href=""><button class="btn btn-primary">Seguir Comprando</button></a>
+						<a href="{{ route('cart-trash') }}"  class="btn btn-outline-danger" role="button">
+							<span>
+								<img src="{{asset('images/cart.svg')}}" alt="" width="50px" height="30px">
+								Vaciar el carro
+							</span>
+						</a>
+							<a href="" class="btn btn-outline-success" role="button">
+								<span>
+									<img src="{{asset('images/online-shop.svg')}}" alt="" width="50px" height="30px">
+									Seguir Comprando
+								</span>
+							</a>
 							
 								<form  method="POST" id="payment-form" action="{!! URL::to('main/paypal') !!}">
 									{{ csrf_field() }}
 									<input type="hidden"  id="amount" name="amount" value="{{number_format($total,2)}}" >
-									<button class="w3-btn w3-blue">Pagar con PayPal</button>
+
+									<button type="button" class="btn btn-outline-info">
+										<span>
+											<img src="{{asset('images/paypal.svg')}}" alt="" width="50px" height="50px">
+										</span>
+									</button>
 								</form>		
 										
 						@else
