@@ -160,7 +160,8 @@ return [
         // SisBezaFest\Providers\BroadcastServiceProvider::class,
         SisBezaFest\Providers\EventServiceProvider::class,
         SisBezaFest\Providers\RouteServiceProvider::class,
-
+        //cart glogal
+        SisBezaFest\Providers\ShoppingCartServiceProvider::class,
     ],
 
     /*
