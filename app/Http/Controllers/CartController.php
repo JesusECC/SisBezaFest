@@ -22,8 +22,10 @@ class CartController extends Controller
     public function add(Paquete $paquete){
         $cart= \Session::get('cart');
         $paquete->cant=1;
+        $paquete->subto=$paquete->precio;
         $cart[$paquete->id]=$paquete;
         \Session::put('cart',$cart);
+        //dd($cart);
         return  redirect()->route('cart-show');
     }
 
@@ -37,6 +39,8 @@ class CartController extends Controller
         
         $cart= \Session::get('cart');
         $cart[$id]->cant=$cantid;
+        //dd($cart);
+        $cart[$id]->subto=$cart[$id]->precio*$cantid;
         \Session::put('cart',$cart);
         return redirect()->route('cart-show');
        //return dd($paquete,$cantid);
@@ -49,6 +53,7 @@ class CartController extends Controller
         $cart= \Session::get('cart');
         $total=0;
         foreach($cart as $t){
+            
             $total+=$t->precio*$t->cant;
         }
         return  $total;

@@ -35,12 +35,13 @@ Route::resource('administrador/partner','PersonaController');
 Route::resource('administrador/estado','EstadoController');
 //index del cliente
 Route::get('main/paquete/{id}','MainController@paquete');
-Route::get('main','MainController@paquete');
+Route::get('main',['as' => 'main','uses'=>'MainController@paquete']);
 Route::get('administrador/empresa/buscarPersona','EmpresaController@buscarpersona');
 //rutas carrito de compras
 Route::get('main/shoppincar', 'ShoppingCartsController@index');
 Route::get('main/shoppincar/{id}', 'InShoppingCartsController@strore')->name('shopping');
 Route::resource('administrador/empresa','EmpresaController');
+Route::get('main/listaCompras',['as' => 'buy-show','uses'=>'DetalleVentaController@index']);
 Auth::routes();
 //Route::resource('','HomeController');
 //Route::get('/home', 'HomeController@index')->name('home');

@@ -27,6 +27,7 @@ use DB;
 class PaymentController extends Controller
 {
     //
+
     private $_api_context;
 
     public function __construct()
@@ -42,6 +43,9 @@ class PaymentController extends Controller
     }
     public function payWithpaypal(Request $request)
     {
+        //$cart = \Session::get('cart');
+        //dd($cart);
+
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
@@ -119,7 +123,7 @@ class PaymentController extends Controller
         /**Execute the payment **/
         $result = $payment->execute($execution, $this->_api_context);
         if ($result->getState() == 'approved') {
-            \Session::put('success', 'Payment success');
+            \Session::put('success', 'Compra Realizada');
             //Session()->forget('cart');
             //Payment {#859 ▼
             //    -_propMap: array:10 [▼
@@ -163,29 +167,24 @@ class PaymentController extends Controller
             'Estado_id'=>1            
             ]
            ); 
-           $cart = \Session::get('cart');
-           $total=0;
-           foreach($cart as $producto){
-			$total += $producto->cant * $producto->precio;
-            }
-           
-           
+           $cart = \Session::get('cart'); 
            //detalle venta y paquete
-
-           $detalle=new DetalleVenta;
-           $detalle->total=$total;
-           $detalle->descripcion='venta';
-           $detalle->cantidad='1';
-           $detalle->precio=$total;
-           $detalle->paquete_id='1';
-           $detalle->venta_id=$idventa;
-           $detalle->save();
-
+            foreach ($cart as $car) {
+                $detalle=new DetalleVenta;
+                $detalle->descripcion='venta';
+                $detalle->cantidad=$car->cant;
+                $detalle->total=$car->subto;
+                $detalle->precio=$car->precio;
+                $detalle->paquete_id=$car->id;
+                $detalle->venta_id=$idventa;
+                $detalle->save();
+                
+            }
            //$pago->cod_pago=$id;
            //$pago->tipo_pago_id=3;
            //$pago->cliente_id=2;
            //$pago->save();
-           Session()->flush();
+           Session::forget('cart');
             return Redirect::to('main/cart');
         }
         \Session::put('error', 'Payment failed');

@@ -23,8 +23,8 @@ class DetalleVenta extends Model
     ];
     //campos que no queremos que se asigne al modelo//
     protected $guarded = [
-        'numero_cuenta',
-        'Estado_id',
-        'persona_id'
+       // 'numero_cuenta',
+       // 'Estado_id',
+       // 'persona_id'
     ];
 }

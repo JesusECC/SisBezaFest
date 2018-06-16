@@ -53,11 +53,11 @@
 									<td>{{ $c->nombre }}</td>
 									<td>{{ number_format($c->precio,2) }}</td>
 									<td>
-										<input type="number" min="1" max="{{$c->cantidad}}" value="{{$c->cant}}" id="paquete_{{ $c->id }}" class="solo-numero" style="border-radius: 5px;text-align: center;">
-										<a href="#" class="btn  " data-href="{{ route('cart-update',$c->id) }}" data-id="{{ $c->id }}"> <img src="{{asset('images/refresh.svg')}}" alt="" width="20px" height="20px"> </a>
+									<input type="number" min="1" max="{{$c->cantidad}}" value="{{$c->cant}}" id="paquete_{{ $c->id }}" class="solo-numero">
+-							<a href="#" class="btn btn-warning btn-update-item" data-href="{{ route('cart-update',$c->id) }}" data-id="{{ $c->id }}"> <i class="fa fa-refres">Actualizar</i> </a>
 									
 									</td>
-									<td>{{ number_format($c->precio*$c->cant,2) }}</td>
+									<td>{{ number_format($c->subto,2) }}</td>
 									<td>
 										<a data-target="#modal-vista-{{$c->id}}" href=""  data-toggle="modal" class="btn btn-outline-warning" role="button">
 											<span ><img src="{{asset('images/view.svg')}}" alt="" width="30px" height="30px"> </span>
@@ -94,36 +94,46 @@
 									</div>			
 								@endforeach
 							</table>
-							<h3> <span class="label label-success">
+							<h3 class="text-xs-right"> 
+							<span class="label label-success">
 									Total: ${{number_format($total,2)}}
 								</span></h3>
 						</div>
-						<a href="{{ route('cart-trash') }}"  class="btn btn-outline-danger" role="button">
-							<span>
-								<img src="{{asset('images/cart.svg')}}" alt="" width="50px" height="30px">
-								Vaciar el carro
-							</span>
-						</a>
-							<a href="" class="btn btn-outline-success" role="button">
-								<span>
-									<img src="{{asset('images/online-shop.svg')}}" alt="" width="50px" height="30px">
-									Seguir Comprando
-								</span>
-							</a>
+						<div class="col-md-12 form-inline my-2 my-lg-0">
+							<div class="row">
+							<div class="col-md-6"></div>
+								<div class="col-md-3">
+										<a href="{{ route('cart-trash') }}"  class="btn btn-outline-danger" role="button">
+									<span>
+										<img src="{{asset('images/cart.svg')}}" alt="" width="50px" height="30px">
+										Vaciar el carro
+									</span>
+									</a>
+								</div>
+								<div class="col-md-3">
+										<a href="{{URL::to('/')}}" class="btn btn-outline-success" role="button">
+										<span>
+											<img src="{{asset('images/online-shop.svg')}}" alt="" width="50px" height="30px">
+											Seguir Comprando
+										</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						
 							
-								<form  method="POST" id="payment-form" action="{!! URL::to('main/paypal') !!}">
+							
+							<form  method="POST" id="payment-form" action="{!! URL::to('main/paypal') !!}">
 									{{ csrf_field() }}
 									<input type="hidden"  id="amount" name="amount" value="{{number_format($total,2)}}" >
-
-									<button type="button" class="btn btn-light">
-										<span>
-											<img src="{{asset('images/paypal.svg')}}" alt="" width="50px" height="50px">
-										</span>
-										<span>
-											Pagar
-										</span>
+									<button class="btn btn-outline-success">
+									<span>
+										<img src="{{asset('images/paypal.svg')}}" alt="" width="50px" heigth="50px">
+									</span>
+										Pagar con PayPal
 									</button>
-								</form>		
+							</form>	
+							<br>
 										
 						@else
 							<h3><span class="label label-warning">No hay productos en el carrito :( </span> </h3>
