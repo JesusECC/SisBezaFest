@@ -41,6 +41,7 @@ Route::get('administrador/empresa/buscarPersona','EmpresaController@buscarperson
 Route::get('main/shoppincar', 'ShoppingCartsController@index');
 Route::get('main/shoppincar/{id}', 'InShoppingCartsController@strore')->name('shopping');
 Route::resource('administrador/empresa','EmpresaController');
+//tiene que estar autentificado para poder entrar a esta seccion
 Route::get('main/listaCompras',['as' => 'buy-show','uses'=>'DetalleVentaController@index']);
 Auth::routes();
 //Route::resource('','HomeController');
