@@ -20,6 +20,7 @@
                     <td>{{$dv->cantidad}}</td>
                     <td>{{$dv->total}}</td>
                     <td>{{$dv->estado}}</td>
+                    
             @endforeach
             </tbody>
         </table>
