@@ -34,7 +34,9 @@ class PaymentController extends Controller
     {
         /** PayPal api context **/
         $paypal_conf = \Config::get('paypal');
+        //dd($paypal_conf);
         $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'],$paypal_conf['secret']));
+       // $this->_api_context = new ApiContext(new OAuthTokenCredential("ATZXHJYtSdmsovwLfZHxC4xcVdNhtxHaYVT6Y5f3BLtDpZmIo1xbY4-jzMmzx391kAN9gOKL3Da6paop","EDRONORHAn53UG_JWFuBjPY56FuwsbSDqr2mDi7eBhZZywP7ynzZ9EzxwioCGqoUiCUNNf4_hQvVKBzs"));
         $this->_api_context->setConfig($paypal_conf['settings']);
     }
     public function index()

@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace SisBezaFest\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
-/** All Paypal Details class **/
+/** All Paypal Details class **
 use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
@@ -26,7 +26,7 @@ class PaypalController extends Controller
 
     public function __construct()
     {
-        /** PayPal api context **/
+        /** PayPal api context **
         $paypal_conf = \Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential(
             $paypal_conf['client_id'],
@@ -45,10 +45,10 @@ class PaypalController extends Controller
         $payer->setPaymentMethod('paypal');
 
         $item_1 = new Item();
-        $item_1->setName('Item 1') /** item name **/
+        $item_1->setName('Item 1') /** item name **
             ->setCurrency('USD')
             ->setQuantity(1)
-            ->setPrice($request->get('amount')); /** unit price **/
+            ->setPrice($request->get('amount')); /** unit price **
 
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
@@ -64,7 +64,7 @@ class PaypalController extends Controller
 
             //dd($transaction);
         $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::to('status')) /** Specify return URL **/
+        $redirect_urls->setReturnUrl(URL::to('status')) /** Specify return URL **
             ->setCancelUrl(URL::to('status'));
 
 
@@ -74,7 +74,7 @@ class PaypalController extends Controller
             ->setRedirectUrls($redirect_urls)
             ->setTransactions(array($transaction));
                
-         /*dd($payment->create($this->_api_context));//exit; **/
+         /*dd($payment->create($this->_api_context));//exit; **
         try {
             //dd($payment); 
             $payment->create($this->_api_context);
@@ -93,10 +93,10 @@ class PaypalController extends Controller
                 break;
             }
         }
-        /** add payment ID to session **/
+        /** add payment ID to session **
         Session::put('paypal_payment_id', $payment->getId());
         if (isset($redirect_url)) {
-            /** redirect to paypal **/
+            /** redirect to paypal **
             return Redirect::away($redirect_url);
         }
         \Session::put('error', 'Unknown error occurred');
@@ -104,9 +104,9 @@ class PaypalController extends Controller
     }
     public function getPaymentStatus()
     {
-        /** Get the payment ID before session clear **/
+        /** Get the payment ID before session clear **
         $payment_id = Session::get('paypal_payment_id');
-        /** clear the session payment ID **/
+        /** clear the session payment ID **
         Session::forget('paypal_payment_id');
         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
             \Session::put('error', 'Payment failed');
@@ -115,7 +115,7 @@ class PaypalController extends Controller
         $payment = Payment::get($payment_id, $this->_api_context);
         $execution = new PaymentExecution();
         $execution->setPayerId(Input::get('PayerID'));
-        /**Execute the payment **/
+        /**Execute the payment **
         $result = $payment->execute($execution, $this->_api_context);
         if ($result->getState() == 'approved') {
             \Session::put('success', 'Payment success');
@@ -126,3 +126,4 @@ class PaypalController extends Controller
     }
 
 }
+*/
