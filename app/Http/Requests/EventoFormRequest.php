@@ -55,7 +55,7 @@ class EventoFormRequest extends FormRequest
             'nombre.alpha' =>'Solo acepta letras',
             'nombre.max' =>'Solo acepta 255 caracteres',
             'direccion.max' =>'Solo acepta 500 caracteres',
-            'descripcion.max' =>'Solo acepta 255 caracteres',
+            'descripcion.max' =>'Solo acepta 500 caracteres',
         ];
     }
 }

@@ -43,6 +43,12 @@
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
+				<label for="direccion">Dirección</label>
+				<input type="text" name="direccion" required value="{{old('direccion')}}" class="form-control">
+			</div>			
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="form-group">
 				<label for="aforo">Aforo</label>
 				<input type="text" name="aforo" required value="{{old('aforo')}}" class="form-control">
 			</div>			
