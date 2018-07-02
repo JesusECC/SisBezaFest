@@ -120,21 +120,25 @@
 								</div>
 							</div>
 						</div>
-						
-							
-							
-							<form  method="POST" id="payment-form" action="{!! URL::to('main/paypal') !!}">
-									{{ csrf_field() }}									
-									<input type="hidden"  id="user" name="user" value="{{Auth::user()->id}}" >
-									<input type="hidden"  id="amount" name="amount" value="{{number_format($total,2)}}" >
-									<button class="btn btn-outline-success">
-									<span>
-										<img src="{{asset('images/paypal.svg')}}" alt="" width="50px" heigth="50px">
-									</span>
-										Pagar con PayPal
-									</button>
-							</form>	
-							<br>
+							@if(isset(Auth::user()->email))	
+								<form  method="POST" id="payment-form" action="{!! URL::to('main/paypal') !!}">
+										{{ csrf_field() }}									
+										<input type="hidden"  id="user" name="user" value="{{Auth::user()->id}}" >
+										<input type="hidden"  id="amount" name="amount" value="{{number_format($total,2)}}" >
+										<button class="btn btn-outline-success">
+										<span>
+											<img src="{{asset('images/paypal.svg')}}" alt="" width="50px" heigth="50px">
+										</span>
+											Pagar con PayPal
+										</button>
+								</form>	
+								<br>
+							@else
+								<button class="btn btn-outline-default">
+									Ingrese para poder realizar el pago
+								</button>
+							@endif
+
 										
 						@else
 							<h3><span class="label label-warning">No hay productos en el carrito :( </span> </h3>

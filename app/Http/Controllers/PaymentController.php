@@ -29,7 +29,6 @@ class PaymentController extends Controller
     //
 
     private $_api_context;
-    public $idUser;
 
     public function __construct()
     {
@@ -49,7 +48,6 @@ class PaymentController extends Controller
     {
         //$cart = \Session::get('cart');
         //dd($cart);
-        $idUser=$request->get('user');
         session(['idUser' => $request->get('user')]);
         //dd($idUser);
         $payer = new Payer();
@@ -146,6 +144,12 @@ class PaymentController extends Controller
             //    ]
             //  }
             $idUser= \Session::get('idUser');
+
+            $idper=DB::table('persona as p')
+            ->where("p.users_id","=",$idUser)
+            ->value('p.id');
+            dd($idper);
+
             $id=$result->getId();
            //insert pago
            $idPago=DB::table('pago')->insertGetId(

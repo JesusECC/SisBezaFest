@@ -97,6 +97,7 @@ class EventoController extends Controller
     public function edit($id)
     {
         //
+        //dd($id);
         return view("partner.evento.edit",["evento"=>Evento::findOrFail($id)]);
     }
 

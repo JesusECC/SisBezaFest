@@ -55,6 +55,7 @@ class UsuarioController extends Controller
         $usuario->name=$request->get('name');
         $usuario->email=$request->get('email');
         $usuario->password=bcrypt($request->get('password'));
+        $usuario->rol='cliente';
         $usuario->save();
         return Redirect::to('administrador/usuario');
 

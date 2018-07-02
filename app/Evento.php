@@ -24,7 +24,7 @@ class Evento extends Model
          'descripcion',
          'imagen',
          'Estado_id',
-         'empresa_id'
+         'empresa_id',
 
 
      ];
@@ -34,12 +34,12 @@ class Evento extends Model
      ];
 
 
-
+/*
      public function paypalYtem(){
          return \PaypalPayment::item()->setName($this->nombre)
                                       ->setDescription($this->descrption)
                                       ->setCurrency('USD')
                                       ->setQuantity(1)
                                       ->setPrice($this->princeng);
-     }
+     }*/
 }

@@ -46,7 +46,7 @@
 								<button class="btn btn-danger">Eliminar</button>
 							</a>
 							<a href="" data-target="#modal-vista-{{$eve->id}}" data-toggle="modal">
-								<button class="btn btn-primary">Ver Flyer</button>
+								<button class="btn btn-default">Ver Flyer</button>
 							</a>
 						</td>
 					</tr>
