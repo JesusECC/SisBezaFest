@@ -38,8 +38,6 @@ class EventoFormRequest extends FormRequest
             'tipo_evento'=>'required',
             'descripcion'=>'required',
             'descripcion'=>'max:500',
-            'Estado_id'=>'required',
-            'empresa_id'=>'required'
         ];
     }
     public function messages()
@@ -55,8 +53,6 @@ class EventoFormRequest extends FormRequest
             'direccion.required' =>'Se requiere dirección',
             'tipo_evento.required' =>'Se requiere tipo de evento',
             'descripcion.required' =>'Se requiere descripcion',
-            'Estado_id.required' =>'Se requiere estado',
-            'empresa_id.required' =>'Se requiere empresa',
             'hora.numeric' =>'Solo acepta números',
             'nombre.alpha' =>'Solo acepta letras',
             'nombre.max' =>'Solo acepta 255 caracteres',
