@@ -25,14 +25,20 @@ class EventoFormRequest extends FormRequest
     {
         return [
             'imagen'=>'required|mimes:jpeg,bmp,png',
-            'nombre'=>'required|alpha|max:255',
+            'nombre'=>'required',
+            'nombre'=>'alpha',
+            'nombre'=>'max:255'
             'fecha_creacion'=>'required',
-            'fecha'=>'required|numeric',
+            'fecha'=>'required',
+            'fecha'=>'numeric',
             'hora'=>'required',
-            'direccion'=>'required|max:255',
-            'aforo'=>'required|numeric',
+            'direccion'=>'required',
+            'direccion'=>'max:255',
+            'aforo'=>'numeric',
+            'aforo'=>'required',
             'tipo_evento'=>'required',
-            'descripcion'=>'required|max:255',
+            'descripcion'=>'required',
+            'descripcion'=>'max:255',
             'Estado_id'=>'required',
             'empresa_id'=>'required'
         ];
