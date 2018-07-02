@@ -58,6 +58,13 @@
 					</a>
 				</li>
 				<li>
+				@if(isset(Auth::user()->email))
+					<a href="#"><span>Email -->{{Auth::user()->id }}</span>
+					</a>
+				@endif
+				
+				</li>
+				<li>
 					<a href="{{route('cart-show')}}"> 
 					<i class="fa fa-shopping-cart"></i>
 					<span>@if(isset($cart))
@@ -70,13 +77,21 @@
 		    </nav>
 		  </div>
 		  <div class="buttons">
-				<div class="login_btn" style="visibility: hidden;">
-					<a href="login.html">Login / Signup</a>
+		  	@if(isset(Auth::user()->email))
+				<div class="login_btn">
+				<a href="{{ route('logout') }}" onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();">
+                    Cerrar Sesion
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                    </form>
 				</div>
+			@else
 				<div class="get_btn">
-					<a href="login.html">Login / Salir</a>
+					<a href="{{ route('login') }}">Login</a>
 				</div>
-				
+			@endif
 				<div class="clear"></div>
 		   </div>
 		   </div>
