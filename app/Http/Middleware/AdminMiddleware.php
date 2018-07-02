@@ -3,6 +3,7 @@
 namespace SisBezaFest\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class AdminMiddleware
 {
@@ -14,7 +15,13 @@ class AdminMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
+
     {
-        return $next($request);
+
+        if(Auth::check() && Auth::user()->role=='Administrador')
+
+            return $next($request);
+            
+        return redirect('/');
     }
 }
