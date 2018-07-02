@@ -72,7 +72,7 @@ class EventoController extends Controller
             $evento->imagen=$file->getClientOriginalName();
         }
         $evento->Estado_id=1;
-        $evento->empresa_id=$request->get('empresa_id');
+        $evento->empresa_id=1;
         $evento->save();
         return Redirect::to('partner/evento');
     }
