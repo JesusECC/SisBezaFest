@@ -26,7 +26,7 @@
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
 			<div class="form-group">
 				<label for="fecha">Fecha de Creación</label>
-				<input  type="date"  data-toggle="tooltip" data-placement="top" title="Ingrese Fecha del Evento" name="fecha" required value="{{old('fecha_creacion')}}" class="form-control">
+				<input  type="date"  data-toggle="tooltip" data-placement="top" title="Ingrese Fecha del Evento" name="fecha_creacion" required value="{{old('fecha_creacion')}}" class="form-control">
 			</div>			
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
