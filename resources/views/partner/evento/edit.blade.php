@@ -2,7 +2,7 @@
 @section ('contenido')
 	<div class="row">
 		<div class="clas-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<h3>Editar Evento: {{$evento->nombre}}</h3>
+			<h3>Editar Evento: </h3>
 			@if (count($errors)>0)
 			<div class="alert alert-danger">
 				<ul>

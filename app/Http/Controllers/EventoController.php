@@ -123,6 +123,8 @@ class EventoController extends Controller
          $file->move(public_path().'/images/eventos/',$file->getClientOriginalName());
             $evento->imagen=$file->getClientOriginalName();
         }
+        $evento->Estado_id=1;
+        $evento->empresa_id=2;
         $evento->update();
         return Redirect::to('partner/evento');
     }

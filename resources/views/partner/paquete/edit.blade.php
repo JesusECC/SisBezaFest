@@ -66,10 +66,10 @@
 				<label for="evento_id">Evento</label>
 				<select name="evento_id" class="form-control">
 					@foreach($evento as $eve)
-						@if($eve->id==$paquete->evento_id)
+						@if($eve->id == $paquete->evento_id)
 						<option value="{{$eve->id}}" selected>{{$eve->nombre}}</option>
 						@else
-						<option value="{{$eve->id}}">{{$id->nombre}}</option>
+						<option value="{{$eve->id}}">{{$eve->nombre}}</option>
 						@endif
 					@endforeach
 				</select>
