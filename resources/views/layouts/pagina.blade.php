@@ -59,7 +59,7 @@
 				</li>
 				<li>
 				@if(isset(Auth::user()->email))
-					<a href="#"><span>Entradas</span>
+					<a href="{{route('buy-show')}}"><span>Entradas</span>
 					</a>
 				@endif
 				

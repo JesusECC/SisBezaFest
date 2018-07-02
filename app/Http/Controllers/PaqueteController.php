@@ -110,8 +110,9 @@ class PaqueteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PaqueteFormRequest $request, $id)
+    public function update(PaqueteFormRequest $request)
     {
+        
         $paquete=Paquete::findOrFail($id);
         $paquete->tipo_paquete_id=$request->get('tipo_paquete_id');
         $paquete->evento_id=$request->get('evento_id');

@@ -9,11 +9,19 @@
      	</div>
      </div>
 	 @if ($message = Session::get('success'))
-        <div class="w3-panel w3-green w3-display-container">
-            <span onclick="this.parentElement.style.display='none'"
-    				class="w3-button w3-green w3-large w3-display-topright">&times;</span>
-            <p>{!! $message !!}</p>
-        </div>
+	 <div class="container">
+		<div class="row">
+			<div class="col-md-12">
+			<div class="alert alert-success" role="alert">
+			<h4 class="alert-heading">BizaFest Agradece su preferencia en compras online de entradas!</h4>
+			<p></p>
+			<p class="mb-0"></p>
+			</div>			
+			</div>
+		</div>
+	 </div>
+
+
         <?php Session::forget('success');?>
         @endif
 
@@ -28,7 +36,10 @@
         <div class="container">
 			<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h1><span><img src="{{asset('images/shopping-cart.svg')}}" alt="" width="50px" height="50px"></span> Carrito de compras</h1>
+					<ol class="breadcrumb">
+  <li class="breadcrumb-item active"><h1><span><img src="{{asset('images/shopping-cart.svg')}}" alt="" width="50px" height="50px"></span> Carrito de compras</h1></li>
+</ol>
+						
 						@if(isset($cart) && isset($total) && count($cart)!=0)
 						<div class="table-responsive-center">
 							<table class="table table-striped table-bordered table-condensed table-hover">
@@ -141,7 +152,14 @@
 
 										
 						@else
-							<h3><span class="label label-warning">No hay productos en el carrito :( </span> </h3>
+						<div class="container">
+						<div class="row">
+						<div class="col-md-12">
+						<h3><span class="label label-warning">Agrear productos al Carrito <button class="btn btn-outline-default">
+									<a href="{{URL::to('/')}}">Agregar</a> 
+								</button> </span> </h3>
+						</div></div></div>
+							
 						@endif
 						
 					</div>
