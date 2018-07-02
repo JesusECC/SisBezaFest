@@ -59,7 +59,14 @@
 				</li>
 				<li>
 				@if(isset(Auth::user()->email))
-					<a href="#"><span>Email -->{{Auth::user()->id }}</span>
+					<a href="#"><span>Entradas</span>
+					</a>
+				@endif
+				
+				</li>
+				<li>
+				@if(isset(Auth::user()->email))
+					<a href="#"><span>{{Auth::user()->name }}</span>
 					</a>
 				@endif
 				
@@ -81,7 +88,7 @@
 				<div class="login_btn">
 				<a href="{{ route('logout') }}" onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">
-                    Cerrar Sesion
+                    Logout
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       {{ csrf_field() }}

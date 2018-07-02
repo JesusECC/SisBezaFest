@@ -29,6 +29,7 @@ class PaymentController extends Controller
     //
 
     private $_api_context;
+    public $idUser;
 
     public function __construct()
     {
@@ -38,6 +39,7 @@ class PaymentController extends Controller
         $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'],$paypal_conf['secret']));
        // $this->_api_context = new ApiContext(new OAuthTokenCredential("ATZXHJYtSdmsovwLfZHxC4xcVdNhtxHaYVT6Y5f3BLtDpZmIo1xbY4-jzMmzx391kAN9gOKL3Da6paop","EDRONORHAn53UG_JWFuBjPY56FuwsbSDqr2mDi7eBhZZywP7ynzZ9EzxwioCGqoUiCUNNf4_hQvVKBzs"));
         $this->_api_context->setConfig($paypal_conf['settings']);
+
     }
     public function index()
     {
@@ -47,7 +49,9 @@ class PaymentController extends Controller
     {
         //$cart = \Session::get('cart');
         //dd($cart);
-
+        $idUser=$request->get('user');
+        session(['idUser' => $request->get('user')]);
+        //dd($idUser);
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
@@ -141,13 +145,15 @@ class PaymentController extends Controller
             //      "links" => array:1 [▶]
             //    ]
             //  }
+            $idUser= \Session::get('idUser');
             $id=$result->getId();
            //insert pago
            $idPago=DB::table('pago')->insertGetId(
             ['cod_pago'=>$id,
             'tipo_pago_id'=>3,
-            'cliente_id'=>2]
+            'cliente_id'=> $idUser]
            );
+           $idUser=NULL;
            $hoy = date("F j Y g:i a"); 
 
            $idventa=DB::table('venta')->insertGetId(

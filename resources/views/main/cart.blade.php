@@ -124,7 +124,8 @@
 							
 							
 							<form  method="POST" id="payment-form" action="{!! URL::to('main/paypal') !!}">
-									{{ csrf_field() }}
+									{{ csrf_field() }}									
+									<input type="hidden"  id="user" name="user" value="{{Auth::user()->id}}" >
 									<input type="hidden"  id="amount" name="amount" value="{{number_format($total,2)}}" >
 									<button class="btn btn-outline-success">
 									<span>
