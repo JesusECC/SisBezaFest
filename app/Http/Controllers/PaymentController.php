@@ -19,6 +19,8 @@ use PayPal\Rest\ApiContext;
 
 use SisBezaFest\Pago;
 use SisBezaFest\Venta;
+use SisBezaFest\Persona;
+use SisBezaFest\Cliente;
 use SisBezaFest\DetalleVenta;
 use Redirect;
 use Session;
@@ -46,7 +48,7 @@ class PaymentController extends Controller
     }
     public function payWithpaypal(Request $request)
     {
-        //$cart = \Session::get('cart');
+        $cart = \Session::get('cart');
         //dd($cart);
         session(['idUser' => $request->get('user')]);
         //dd($idUser);
@@ -145,17 +147,21 @@ class PaymentController extends Controller
             //  }
             $idUser= \Session::get('idUser');
 
-            $idper=DB::table('persona as p')
-            ->where("p.users_id","=",$idUser)
-            ->value('p.id');
-            dd($idper);
-
+            $idper=DB::table('persona')
+            ->where("users_id","=",$idUser)
+            ->get();
+            $idcom=$idper[0]->id;
             $id=$result->getId();
+            //insert cliente
+            $idclien=DB::table('cliente')->insertGetId(
+                ['persona_id'=>$idcom]
+            );
+
            //insert pago
            $idPago=DB::table('pago')->insertGetId(
             ['cod_pago'=>$id,
             'tipo_pago_id'=>3,
-            'cliente_id'=> $idUser]
+            'cliente_id'=> $idclien]
            );
            $idUser=NULL;
            $hoy = date("F j Y g:i a"); 
