@@ -41,8 +41,7 @@ class EventoFormRequest extends FormRequest
     {
         return [
             'imagen.mimes' =>'Solo acepta los formatos jpeg,bmp,png',
-
-            'imagen.required' =>'Se requiere de este campo',
+            'imagen.required' =>'Se requiere el nombre',
             'nombre.required' =>'Se requiere de este campo',
             'fecha_creacion.required' =>'Se requiere de este campo',
             'fecha.required' =>'Se requiere de este campo',
