@@ -18,10 +18,10 @@ class AdminMiddleware
 
     {
 
-        if(Auth::check() && Auth::user()->role=='Administrador')
+        if(Auth::check() && Auth::user()->rol=='Administrador')
 
             return $next($request);
-            
-        return redirect('/');
+
+        return redirect('/administrador/usuario');
     }
 }

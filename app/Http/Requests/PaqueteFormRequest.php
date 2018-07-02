@@ -25,8 +25,8 @@ class PaqueteFormRequest extends FormRequest
     {
         return [
             'imagen'=>'required|mimes:jpeg,bmp,png',
-            'nombre'=>'required|alpha|max:255',
-            'descripcion'=>'required|alpha|max:255',
+            'nombre'=>'required|max:255',
+            'descripcion'=>'required|max:255',
             'precio'=>'required|numeric',
             'cantidad'=>'required|numeric',
             'nr_personas'=>'required|numeric',
@@ -50,6 +50,7 @@ class PaqueteFormRequest extends FormRequest
             'nr_personas.numeric' =>'Solo acepta números',
             'nombre.max' =>'Solo acepta 255 caracteres',
             'descripcion.max' =>'Solo acepta 255 caracteres',
+            'descripcion.required'=>'Se requiere este campo',
         ];
     }
 
