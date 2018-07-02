@@ -27,7 +27,7 @@ class EventoFormRequest extends FormRequest
             'imagen'=>'required|mimes:jpeg,bmp,png',
             'nombre'=>'required',
             'nombre'=>'alpha',
-            'nombre'=>'max:255'
+            'nombre'=>'max:255',
             'fecha_creacion'=>'required',
             'fecha'=>'required',
             'fecha'=>'numeric',
@@ -38,7 +38,7 @@ class EventoFormRequest extends FormRequest
             'aforo'=>'required',
             'tipo_evento'=>'required',
             'descripcion'=>'required',
-            'descripcion'=>'max:255',
+            'descripcion'=>'max:500',
             'Estado_id'=>'required',
             'empresa_id'=>'required'
         ];
@@ -61,7 +61,7 @@ class EventoFormRequest extends FormRequest
             'hora.numeric' =>'Solo acepta números',
             'nombre.alpha' =>'Solo acepta letras',
             'nombre.max' =>'Solo acepta 255 caracteres',
-            'direccion.max' =>'Solo acepta 255 caracteres',
+            'direccion.max' =>'Solo acepta 500 caracteres',
             'descripcion.max' =>'Solo acepta 255 caracteres',
         ];
     }
